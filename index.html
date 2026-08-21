@@ -1,0 +1,909 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Секрет Алёнки</title>
+
+<style>
+
+/* =========================
+   ОСНОВНОЙ ДИЗАЙН
+========================= */
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    min-height: 100vh;
+
+    background:
+        radial-gradient(circle at 20% 20%, #ffffff 0 2px, transparent 3px),
+        radial-gradient(circle at 80% 70%, #ffffff 0 2px, transparent 3px),
+        linear-gradient(135deg, #ffeaf3, #ffdce9, #fff4f8);
+
+    background-size: 55px 55px, 70px 70px, auto;
+
+    color: #70465a;
+
+    font-family: Georgia, "Times New Roman", serif;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    padding: 30px 15px;
+}
+
+
+/* =========================
+   КАРТОЧКА
+========================= */
+
+.box {
+
+    width: 94%;
+    max-width: 650px;
+
+    background: rgba(255, 251, 253, 0.96);
+
+    padding: 35px 25px;
+
+    text-align: center;
+
+    border-radius: 30px;
+
+    border: 5px solid #e9afc4;
+
+    outline: 2px dashed #d996ae;
+    outline-offset: 8px;
+
+    box-shadow:
+        0 15px 40px rgba(173, 100, 130, 0.25);
+
+    position: relative;
+}
+
+
+/* =========================
+   КРУЖЕВО
+========================= */
+
+.lace {
+
+    color: #d18aa5;
+
+    font-size: 22px;
+
+    letter-spacing: 9px;
+
+    margin: 5px 0 22px;
+
+    user-select: none;
+}
+
+
+/* =========================
+   ЗАГОЛОВКИ
+========================= */
+
+h1 {
+
+    color: #c86f91;
+
+    font-family: Georgia, serif;
+
+    font-size: 34px;
+
+    letter-spacing: 3px;
+
+    text-shadow:
+        1px 1px 0 #ffffff,
+        0 3px 8px rgba(180, 90, 120, 0.2);
+}
+
+
+h2 {
+
+    color: #c87596;
+
+    font-size: 27px;
+
+    margin-bottom: 20px;
+}
+
+
+p {
+
+    line-height: 1.75;
+
+    font-size: 17px;
+}
+
+
+/* =========================
+   КОШЕЧКИ-СТИКЕРЫ
+========================= */
+
+.cat {
+
+    width: 105px;
+    height: 75px;
+
+    margin: 15px auto;
+
+    position: relative;
+
+    background: #f4c6d7;
+
+    border-radius: 48% 48% 45% 45%;
+
+    box-shadow:
+        0 5px 10px rgba(160, 90, 120, 0.15);
+}
+
+
+/* ушки */
+
+.cat:before {
+
+    content: "";
+
+    position: absolute;
+
+    width: 0;
+    height: 0;
+
+    border-left: 22px solid transparent;
+    border-right: 22px solid transparent;
+    border-bottom: 32px solid #f4c6d7;
+
+    left: 5px;
+    top: -22px;
+
+    transform: rotate(-20deg);
+}
+
+
+.cat:after {
+
+    content: "";
+
+    position: absolute;
+
+    width: 0;
+    height: 0;
+
+    border-left: 22px solid transparent;
+    border-right: 22px solid transparent;
+    border-bottom: 32px solid #f4c6d7;
+
+    right: 5px;
+    top: -22px;
+
+    transform: rotate(20deg);
+}
+
+
+/* лицо */
+
+.cat-eyes {
+
+    position: absolute;
+
+    left: 27px;
+    right: 27px;
+
+    top: 27px;
+
+    display: flex;
+
+    justify-content: space-between;
+}
+
+
+.cat-eyes span {
+
+    width: 9px;
+    height: 12px;
+
+    background: #75485d;
+
+    border-radius: 50%;
+}
+
+
+/* нос */
+
+.cat-nose {
+
+    position: absolute;
+
+    top: 42px;
+    left: 48px;
+
+    width: 9px;
+    height: 7px;
+
+    background: #c87596;
+
+    border-radius: 50%;
+}
+
+
+/* =========================
+   КНОПКИ
+========================= */
+
+button {
+
+    padding: 14px 30px;
+
+    border: none;
+
+    border-radius: 25px;
+
+    background: linear-gradient(
+        135deg,
+        #e99ab7,
+        #d8799c
+    );
+
+    color: white;
+
+    font-family: Georgia, serif;
+
+    font-size: 16px;
+
+    cursor: pointer;
+
+    box-shadow:
+        0 5px 12px rgba(190, 90, 125, 0.25);
+
+    transition: 0.2s;
+}
+
+
+button:hover {
+
+    transform: translateY(-2px);
+
+    box-shadow:
+        0 7px 15px rgba(190, 90, 125, 0.35);
+}
+
+
+/* =========================
+   ПОЛЕ ОТВЕТА
+========================= */
+
+input {
+
+    width: 88%;
+
+    padding: 14px;
+
+    margin: 14px 0;
+
+    border-radius: 18px;
+
+    border: 2px solid #e3aec2;
+
+    background: #fff8fb;
+
+    color: #70465a;
+
+    font-family: Georgia, serif;
+
+    font-size: 16px;
+
+    text-align: center;
+
+    outline: none;
+}
+
+
+input:focus {
+
+    border-color: #d47f9f;
+
+    box-shadow:
+        0 0 10px rgba(210, 120, 155, 0.2);
+}
+
+
+/* =========================
+   ОШИБКА
+========================= */
+
+.error {
+
+    color: #c35d80;
+
+    font-weight: bold;
+
+    min-height: 25px;
+}
+
+
+/* =========================
+   ФИНАЛЬНАЯ ПОДСКАЗКА
+========================= */
+
+.hint {
+
+    background: #fff0f6;
+
+    border: 2px dashed #d993ad;
+
+    border-radius: 20px;
+
+    padding: 22px;
+
+    margin-top: 20px;
+
+    font-size: 19px;
+
+    color: #78495e;
+
+    box-shadow:
+        inset 0 0 15px rgba(220, 140, 170, 0.12);
+}
+
+
+.small {
+
+    color: #a67588;
+
+    font-size: 14px;
+}
+
+
+/* скрытие */
+
+.hidden {
+
+    display: none;
+}
+
+</style>
+
+</head>
+
+
+<body>
+
+
+<div class="box">
+
+
+<!-- =========================
+     НАЧАЛО
+========================= -->
+
+<section id="start">
+
+<div class="lace">
+♡ · · · ♡ · · · ♡
+</div>
+
+
+<div class="cat">
+
+    <div class="cat-eyes">
+        <span></span>
+        <span></span>
+    </div>
+
+    <div class="cat-nose"></div>
+
+</div>
+
+
+<h1>Секрет Алёнки</h1>
+
+
+<p>
+Ты нашла секретную страницу.
+</p>
+
+
+<p>
+Здесь спрятаны пять испытаний.
+</p>
+
+
+<p>
+Только тот, кто пройдёт их все,
+узнает последнюю подсказку.
+</p>
+
+
+<button onclick="show('test1')">
+НАЧАТЬ
+</button>
+
+
+<div class="lace">
+· · · ♡ · · ·
+</div>
+
+</section>
+
+
+
+<!-- =========================
+     ИСПЫТАНИЕ 1
+========================= -->
+
+<section id="test1" class="hidden">
+
+<div class="lace">
+♡ · · · ♡
+</div>
+
+
+<h2>Первое испытание</h2>
+
+
+<p>
+У тебя есть четыре слова:
+</p>
+
+
+<p>
+<b>
+ЛУНА — ЗВЕЗДА — СОЛНЦЕ — ОБЛАКО
+</b>
+</p>
+
+
+<p>
+Три слова связаны с небом,
+а одно — нет.
+</p>
+
+
+<p>
+Какое слово лишнее?
+</p>
+
+
+<input id="answer1" placeholder="Твой ответ">
+
+
+<br>
+
+
+<button onclick="check1()">
+ПРОВЕРИТЬ
+</button>
+
+
+<p id="error1" class="error"></p>
+
+</section>
+
+
+
+<!-- =========================
+     ИСПЫТАНИЕ 2
+========================= -->
+
+<section id="test2" class="hidden">
+
+<div class="lace">
+♡ · · · ♡
+</div>
+
+
+<h2>Второе испытание</h2>
+
+
+<p>
+Расшифруй число:
+</p>
+
+
+<p>
+<b>
+1 — 12 — 5 — 14 — 11 — 1
+</b>
+</p>
+
+
+<p>
+Каждое число — это номер буквы
+в русском алфавите.
+</p>
+
+
+<p>
+Какое слово получилось?
+</p>
+
+
+<input id="answer2" placeholder="Напиши слово">
+
+
+<br>
+
+
+<button onclick="check2()">
+РАЗГАДАТЬ
+</button>
+
+
+<p id="error2" class="error"></p>
+
+</section>
+
+
+
+<!-- =========================
+     ИСПЫТАНИЕ 3
+========================= -->
+
+<section id="test3" class="hidden">
+
+<div class="lace">
+♡ · · · ♡
+</div>
+
+
+<h2>Третье испытание</h2>
+
+
+<p>
+Продолжи последовательность:
+</p>
+
+
+<p>
+<b>
+1 — 4 — 9 — 16 — 25 — ?
+</b>
+</p>
+
+
+<p>
+Какое число должно быть следующим?
+</p>
+
+
+<input id="answer3" placeholder="Число">
+
+
+<br>
+
+
+<button onclick="check3()">
+ПРОВЕРИТЬ
+</button>
+
+
+<p id="error3" class="error"></p>
+
+</section>
+
+
+
+<!-- =========================
+     ИСПЫТАНИЕ 4
+========================= -->
+
+<section id="test4" class="hidden">
+
+<div class="lace">
+♡ · · · ♡
+</div>
+
+
+<h2>Четвёртое испытание</h2>
+
+
+<p>
+Внимательно посмотри на слова:
+</p>
+
+
+<p>
+<b>
+КОШКА<br>
+РОЗА<br>
+АЛМАЗ<br>
+ЛУНА
+</b>
+</p>
+
+
+<p>
+Найди букву, которая встречается
+во всех четырёх словах.
+</p>
+
+
+<input id="answer4" placeholder="Одна буква">
+
+
+<br>
+
+
+<button onclick="check4()">
+ПРОВЕРИТЬ
+</button>
+
+
+<p id="error4" class="error"></p>
+
+</section>
+
+
+
+<!-- =========================
+     ИСПЫТАНИЕ 5
+========================= -->
+
+<section id="test5" class="hidden">
+
+<div class="lace">
+♡ · · · ♡
+</div>
+
+
+<h2>Последнее испытание</h2>
+
+
+<p>
+У Алёнки есть три коробочки:
+</p>
+
+
+<p>
+<b>
+РОЗОВАЯ — БЕЛАЯ — СИРЕНЕВАЯ
+</b>
+</p>
+
+
+<p>
+Записка говорит:
+</p>
+
+
+<p>
+«Секрет находится не в розовой коробочке.
+И не в белой».
+</p>
+
+
+<p>
+Где находится секрет?
+</p>
+
+
+<input id="answer5" placeholder="Твой ответ">
+
+
+<br>
+
+
+<button onclick="check5()">
+ОТКРЫТЬ СЕКРЕТ
+</button>
+
+
+<p id="error5" class="error"></p>
+
+</section>
+
+
+
+<!-- =========================
+     ФИНАЛ
+========================= -->
+
+<section id="finish" class="hidden">
+
+<div class="lace">
+♡ · · · ♡ · · · ♡
+</div>
+
+
+<div class="cat">
+
+    <div class="cat-eyes">
+        <span></span>
+        <span></span>
+    </div>
+
+    <div class="cat-nose"></div>
+
+</div>
+
+
+<h1>СЕКРЕТ РАСКРЫТ</h1>
+
+
+<p>
+Ты успешно прошла все пять испытаний.
+</p>
+
+
+<div class="hint">
+
+<b>
+ТВОЯ ФИНАЛЬНАЯ ПОДСКАЗКА:
+</b>
+
+
+<br><br>
+
+
+Ищи того человека, которого ты видишь
+каждый новый день.
+
+
+</div>
+
+
+<div class="lace">
+♡ · · · ♡ · · · ♡
+</div>
+
+
+<p class="small">
+На этом всё... или секрет только начинается?
+</p>
+
+</section>
+
+
+</div>
+
+
+
+<script>
+
+
+function show(id) {
+
+    document.querySelectorAll("section").forEach(section => {
+
+        section.classList.add("hidden");
+
+    });
+
+    document.getElementById(id).classList.remove("hidden");
+}
+
+
+
+/* ИСПЫТАНИЕ 1 */
+
+function check1() {
+
+    let answer =
+        document.getElementById("answer1").value
+        .trim()
+        .toLowerCase();
+
+
+    if (answer === "облако") {
+
+        show("test2");
+
+    } else {
+
+        document.getElementById("error1").textContent =
+        "Не совсем. Подумай ещё раз.";
+
+    }
+}
+
+
+
+/* ИСПЫТАНИЕ 2 */
+
+function check2() {
+
+    let answer =
+        document.getElementById("answer2").value
+        .trim()
+        .toLowerCase();
+
+
+    if (answer === "аленка") {
+
+        show("test3");
+
+    } else {
+
+        document.getElementById("error2").textContent =
+        "Шифр ещё не разгадан. Используй русский алфавит.";
+
+    }
+}
+
+
+
+/* ИСПЫТАНИЕ 3 */
+
+function check3() {
+
+    let answer =
+        document.getElementById("answer3").value
+        .trim();
+
+
+    if (answer === "36") {
+
+        show("test4");
+
+    } else {
+
+        document.getElementById("error3").textContent =
+        "Посмотри на квадраты чисел.";
+
+    }
+}
+
+
+
+/* ИСПЫТАНИЕ 4 */
+
+function check4() {
+
+    let answer =
+        document.getElementById("answer4").value
+        .trim()
+        .toLowerCase();
+
+
+    if (answer === "а") {
+
+        show("test5");
+
+    } else {
+
+        document.getElementById("error4").textContent =
+        "Внимательно проверь все четыре слова.";
+
+    }
+}
+
+
+
+/* ИСПЫТАНИЕ 5 */
+
+function check5() {
+
+    let answer =
+        document.getElementById("answer5").value
+        .trim()
+        .toLowerCase();
+
+
+    if (
+        answer === "сиреневая" ||
+        answer === "сиреневая коробочка"
+    ) {
+
+        show("finish");
+
+    } else {
+
+        document.getElementById("error5").textContent =
+        "Две коробочки уже исключены. Осталась только одна.";
+
+    }
+}
+
+
+</script>
+
+</body>
+  </html>
